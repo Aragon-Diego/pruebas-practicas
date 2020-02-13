@@ -1,12 +1,17 @@
 import numpy as np
 import cv2
+import random
+m=cv2.imread("01.jpg")
+h,w,bpp = np.shape(m)
 
-img = np.zeros([500,500,3])
 
-img[:,:,0] = np.ones([500,500])*32/255.0
-img[:,:,1] = np.ones([500,500])*157/255.0
-img[:,:,2] = np.ones([500,500])*255/255.0
+for py in range(0,h):
+    for px in range(0,w):
+        if(m[py][px][0] >200):            
+            m[py][px][0]=random.randint(0,255)
+            m[py][px][1]=random.randint(0,255)
+            m[py][px][2]=random.randint(0,255)
 
-cv2.imwrite('color_img.jpg', img)
-cv2.imshow("image", img);
-cv2.waitKey();
+cv2.imshow('matrix', m)
+cv2.waitKey(0)
+cv2.imwrite('yourNewImage.jpg',m)
